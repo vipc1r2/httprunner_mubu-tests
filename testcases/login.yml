@@ -1,0 +1,181 @@
+config:
+    name: login system
+    variables: {}
+    verify: False
+    #注释单行
+
+teststeps:
+-   name: /
+    request:
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+        method: GET
+        url: https://mubu.com/
+    validate:
+    -   eq: [status_code, 200]
+
+-   name: //static/img/flow.gif
+    request:
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+        method: GET
+        url: https://mubu.com//static/img/flow.gif
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /favicon.ico
+    request:
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+        method: GET
+        url: https://mubu.com/favicon.ico
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /login
+    request:
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+        method: GET
+        url: https://mubu.com/login
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /login/password
+    request:
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+        method: GET
+        url: https://mubu.com/login/password
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /api/login/submit
+    request:
+        data:
+            password: 123456x
+            phone: '15210968320'
+            remember: 'true'
+        headers:
+            content-type: application/x-www-form-urlencoded; charset=UTF-8
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+            x-requested-with: XMLHttpRequest
+        method: POST
+        url: https://mubu.com/api/login/submit
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - null
+-   name: /list
+    request:
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+        method: GET
+        url: https://mubu.com/list
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /api/list/tip_new_update
+    request:
+        data: ''
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+            x-requested-with: XMLHttpRequest
+        method: POST
+        url: https://mubu.com/api/list/tip_new_update
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - null
+-   name: /api/list/get
+    request:
+        data:
+            folderId: '0'
+            keywords: ''
+            sort: time
+            source: ''
+        headers:
+            content-type: application/x-www-form-urlencoded; charset=UTF-8
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+            x-requested-with: XMLHttpRequest
+        method: POST
+        url: https://mubu.com/api/list/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - null
+-   name: /api/message/get_message_unread
+    request:
+        data: ''
+        headers:
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+            x-requested-with: XMLHttpRequest
+        method: POST
+        url: https://mubu.com/api/message/get_message_unread
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - null
+-   name: /api/list/get
+    request:
+        data:
+            folderId: o7RMpM2sl4
+            keywords: ''
+            sort: time
+            source: ''
+        headers:
+            content-type: application/x-www-form-urlencoded; charset=UTF-8
+            user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+            x-requested-with: XMLHttpRequest
+        method: POST
+        url: https://mubu.com/api/list/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - null
