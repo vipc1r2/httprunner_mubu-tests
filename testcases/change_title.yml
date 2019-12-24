@@ -11,6 +11,7 @@ teststeps:
         - documentId
         - memberId
         - userId
+#引用create_doc，提取参数用到下一个用例
 
 -   name: /api/middleware/message
     request:

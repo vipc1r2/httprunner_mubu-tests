@@ -229,6 +229,7 @@ teststeps:
         url: https://mubu.com/api/user/current_level
     extract: 
         userId: content.data.id
+    #提取userId
       
     validate:
     -   eq:
