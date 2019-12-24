@@ -192,10 +192,10 @@ teststeps:
         url: https://mubu.com/api/list/create_doc
     extract:
         documentId: content.data.id
+    #extract:提取响应中id，用于下一个请求参数$documentId来实现，body中一般书content.data.id一级一级向里
+
     validate:
-    -   eq:
-        - status_code
-        - 200
+    -   eq: [status_code, 200]
     -   eq:
         - content.code
         - 0
@@ -211,6 +211,7 @@ teststeps:
         url: https://mubu.com/doc${documentId}
     extract:
         memberId: "memberId: '(.*)'"
+    #html页面通过正则匹配，提取memberId
     validate:
     -   eq:
         - status_code
